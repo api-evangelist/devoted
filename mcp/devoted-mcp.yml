@@ -1,0 +1,32 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source: openapi/devoted-patient-access-openapi.json
+notes: >-
+  No official hosted/remote MCP server was found for Devoted Health. This is a
+  candidate tool list derived from the Patient Access FHIR API operations
+  (read-only FHIR search). Member data access requires an OAuth 2.0 bearer token
+  from login.devoted.com and member consent per the CMS Patient Access rule.
+server:
+  name: devoted-patient-access
+  transport: http
+  auth: oauth2 (login.devoted.com)
+tools:
+- name: search_conditions
+  description: Search a member's FHIR Condition resources (requires patient).
+  source_operation: openapi/devoted-patient-access-openapi.json#GET /Condition
+- name: search_encounters
+  description: Search a member's FHIR Encounter resources by patient and date.
+  source_operation: openapi/devoted-patient-access-openapi.json#GET /Encounter
+- name: search_explanation_of_benefit
+  description: Search a member's ExplanationOfBenefit (claims) by patient and date.
+  source_operation: openapi/devoted-patient-access-openapi.json#GET /ExplanationOfBenefit
+- name: search_medications
+  description: Search a member's FHIR Medication resources.
+  source_operation: openapi/devoted-patient-access-openapi.json#GET /Medication
+- name: search_patients
+  description: Search FHIR Patient resources.
+  source_operation: openapi/devoted-patient-access-openapi.json#GET /Patient
+- name: get_patient
+  description: Read a single FHIR Patient by id.
+  source_operation: openapi/devoted-patient-access-openapi.json#GET /Patient/{id}

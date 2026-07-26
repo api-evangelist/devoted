@@ -1,0 +1,50 @@
+generated: '2026-07-18'
+method: derived
+source: >-
+  openapi/devoted-patient-access-openapi.json (HAPI FHIR server) + HL7 FHIR R4
+  RESTful error semantics
+format: fhir-operationoutcome
+media_type: application/fhir+json
+notes: >-
+  Devoted Health's FHIR APIs return errors as HL7 FHIR OperationOutcome resources
+  with a standard HTTP status. The Patient Access Swagger documents only 200
+  success responses, so the error set below is derived from the FHIR R4 RESTful
+  API specification and standard HAPI FHIR server behavior. OperationOutcome.issue[]
+  carries severity, code, and diagnostics.
+envelope:
+  resourceType: OperationOutcome
+  fields:
+  - issue[].severity
+  - issue[].code
+  - issue[].diagnostics
+  - issue[].details
+problems:
+- status: 400
+  fhir_issue_code: invalid
+  title: Bad Request
+  meaning: Malformed request or invalid FHIR search parameter.
+- status: 401
+  fhir_issue_code: security
+  title: Unauthorized
+  meaning: Missing or invalid OAuth 2.0 bearer token (member-facing Patient Access API).
+  remediation: Obtain a token from login.devoted.com/oauth/token via the authorization code flow.
+- status: 403
+  fhir_issue_code: forbidden
+  title: Forbidden
+  meaning: Token lacks consent/authorization to access the requested member data.
+- status: 404
+  fhir_issue_code: not-found
+  title: Not Found
+  meaning: The requested FHIR resource instance does not exist.
+- status: 422
+  fhir_issue_code: processing
+  title: Unprocessable Entity
+  meaning: Request understood but failed FHIR validation or business rules.
+- status: 429
+  fhir_issue_code: throttled
+  title: Too Many Requests
+  meaning: Rate limit exceeded (not formally documented; standard HAPI behavior).
+- status: 500
+  fhir_issue_code: exception
+  title: Internal Server Error
+  meaning: Unexpected server error; OperationOutcome describes the failure.

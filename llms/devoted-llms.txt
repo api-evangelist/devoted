@@ -1,0 +1,37 @@
+# Devoted Health
+
+> Devoted Health is a technology-enabled Medicare Advantage payer (founded 2017, Waltham, MA) that publishes CMS-required interoperability FHIR R4 APIs: a member Patient Access API (claims, encounters, conditions, medications) and public Provider & Pharmacy Directory and Plan Coverage & Formularies APIs. Member data access uses OAuth 2.0 / OpenID Connect with member consent per the 21st Century Cures Act.
+
+## APIs
+
+- [Patient Access API](https://api.prod.devoted.com/fhir): Member claims, encounters, conditions, and medications (FHIR R4). Requires OAuth 2.0 member authorization.
+- [Provider & Pharmacy Directory API](https://fhir.devoted.com/fhir): In-network providers, facilities, and pharmacies (PDEX Plan-Net). Public.
+- [Plan Coverage & Formularies API](https://fhir.devoted.com/fhir): Drug formulary information (PDEX US Drug Formulary). Public.
+
+## Specs
+
+- [Patient Access OpenAPI (Swagger 2.0)](https://devoted.com/developers/fhir/swagger/swagger.json)
+- [Directory FHIR CapabilityStatement](https://fhir.devoted.com/fhir/metadata)
+- [Patient Access FHIR CapabilityStatement](https://api.prod.devoted.com/fhir/metadata)
+- [OpenID Connect discovery](https://login.devoted.com/.well-known/openid-configuration)
+
+## Docs
+
+- [Developer program](https://www.devoted.com/developers/)
+- [Patient Access Swagger UI](https://devoted.com/developers/fhir/swagger/)
+- [App registration form](https://forms.gle/UFYvckiAeEjWP49K9)
+- [Terms of Use](https://www.devoted.com/terms-of-use/)
+- [Privacy Policy](https://www.devoted.com/privacy-policy/)
+
+## Contact
+
+- Interoperability team: interop@devoted.com
+- GitHub: https://github.com/DevotedHealth
+
+## Standards
+
+- HL7 FHIR R4 (4.0.1)
+- CMS Interoperability and Patient Access (21st Century Cures Act)
+- Da Vinci PDEX Plan-Net and PDEX US Drug Formulary
+- CARIN Blue Button (ExplanationOfBenefit)
+- OAuth 2.0 / OpenID Connect

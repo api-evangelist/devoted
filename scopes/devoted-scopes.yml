@@ -1,0 +1,44 @@
+generated: '2026-07-18'
+method: searched
+source: https://login.devoted.com/.well-known/openid-configuration
+docs: https://www.devoted.com/developers/
+notes: >-
+  OpenID Connect scopes advertised by Devoted Health's Auth0 authorization
+  server (login.devoted.com), used for member authorization to the Patient Access
+  FHIR API. Scope list captured verbatim from the published discovery document
+  scopes_supported. Member authorization follows the OAuth 2.0 / OIDC pattern
+  required by the CMS Interoperability and Patient Access rule.
+schemes:
+- name: OpenIDConnect
+  source: well-known/devoted-openid-configuration.json
+  authorizationUrl: https://login.devoted.com/authorize
+  tokenUrl: https://login.devoted.com/oauth/token
+scopes:
+- scope: openid
+  description: Authenticate the member and issue an ID token (OIDC core).
+- scope: profile
+  description: Access basic profile claims (name, nickname, picture, updated_at).
+- scope: offline_access
+  description: Issue a refresh token for long-lived access.
+- scope: name
+  description: Member's full name claim.
+- scope: given_name
+  description: Member's given (first) name claim.
+- scope: family_name
+  description: Member's family (last) name claim.
+- scope: nickname
+  description: Member's nickname claim.
+- scope: email
+  description: Member's email address claim.
+- scope: email_verified
+  description: Whether the member's email address has been verified.
+- scope: picture
+  description: URL of the member's profile picture.
+- scope: created_at
+  description: Timestamp the member's identity record was created.
+- scope: identities
+  description: Linked identity provider records for the member.
+- scope: phone
+  description: Member's phone number claim.
+- scope: address
+  description: Member's postal address claim.

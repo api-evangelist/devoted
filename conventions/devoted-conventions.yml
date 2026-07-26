@@ -1,0 +1,51 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/devoted-patient-access-openapi.json + HL7 FHIR R4 conventions
+docs: https://www.devoted.com/developers/
+notes: >-
+  Cross-cutting request/response semantics for Devoted Health's FHIR R4 APIs.
+  Derived from the published CapabilityStatements, the Patient Access Swagger,
+  and HL7 FHIR R4 RESTful conventions (the APIs are standard HAPI FHIR servers).
+authentication:
+  style: OAuth2 / OpenID Connect bearer token (member-facing Patient Access API); public read for Directory/Formulary.
+  ref: authentication/devoted-authentication.yml
+content_negotiation:
+  default: application/fhir+json
+  parameter: _format (query) accepts json or xml
+  header: Accept
+idempotency:
+  supported: false
+  note: >-
+    Exposed operations are read-only FHIR search/read (GET); no idempotency-key
+    header is documented. FHIR write interactions on the server use conditional
+    create/update (If-None-Exist / If-Match ETag) but are not exposed to third
+    parties on these APIs.
+pagination:
+  style: FHIR Bundle paging
+  mechanism: >-
+    Search responses are FHIR searchset Bundles; follow Bundle.link with
+    relation "next"/"self"/"previous" for cursor-style paging. _count controls
+    page size.
+  response_fields:
+  - Bundle.total
+  - Bundle.link[relation=next].url
+search:
+  style: FHIR search parameters
+  common_params:
+  - patient (required on member clinical resources)
+  - date (Encounter, ExplanationOfBenefit)
+  - _id
+  - _format
+  - _count
+versioning:
+  scheme: FHIR release (R4 / 4.0.1)
+  resource_versioning: supported (vread, history, ETag/If-Match)
+  ref: lifecycle/devoted-lifecycle.yml
+error_envelope:
+  format: FHIR OperationOutcome
+  media_type: application/fhir+json
+  ref: errors/devoted-problem-types.yml
+rate_limiting:
+  documented: false
+tracing:
+  documented: false

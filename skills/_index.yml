@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/devoted-patient-access-openapi.json + conformance/devoted-directory-capabilitystatement.json
+skills:
+- file: devoted-patient-access.md
+  name: Retrieve a member's Devoted Health data via the Patient Access API
+  api: openapi/devoted-patient-access-openapi.json
+  operations:
+  - GET /Patient
+  - GET /Patient/{id}
+  - GET /Condition
+  - GET /Encounter
+  - GET /ExplanationOfBenefit
+  - GET /Medication
+- file: devoted-provider-directory-search.md
+  name: Search the Devoted Health provider, pharmacy, and formulary directory
+  api: conformance/devoted-directory-capabilitystatement.json
+  operations:
+  - GET /Practitioner
+  - GET /PractitionerRole
+  - GET /Organization
+  - GET /Location
+  - GET /HealthcareService
+  - GET /InsurancePlan
+  - GET /MedicationKnowledge
+  - GET /List

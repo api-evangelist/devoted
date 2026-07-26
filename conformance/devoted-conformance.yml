@@ -1,0 +1,53 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.devoted.com/developers/
+evidence_files:
+- conformance/devoted-directory-capabilitystatement.json
+- conformance/devoted-patient-capabilitystatement.json
+- openapi/devoted-patient-access-openapi.json
+- well-known/devoted-openid-configuration.json
+notes: >-
+  Devoted Health exposes CMS-required interoperability FHIR APIs. Standards below
+  are asserted from the published FHIR CapabilityStatements, the developer
+  documentation, and the reference implementations Devoted's APIs are built on.
+standards:
+- id: hl7-fhir-r4
+  conforms: true
+  evidence: CapabilityStatements report fhirVersion 4.0.1 (HL7 FHIR R4); HAPI FHIR 6.6.0 server.
+- id: cms-interoperability-patient-access
+  conforms: true
+  evidence: >-
+    Devoted publishes Patient Access, Provider Directory, and Formulary APIs in
+    conformance with the CMS Interoperability and Patient Access rule (21st
+    Century Cures Act).
+- id: pdex-plan-net
+  conforms: true
+  evidence: Provider & Pharmacy Directory API based on the Da Vinci PDEX Plan-Net reference implementation.
+- id: pdex-us-drug-formulary
+  conforms: true
+  evidence: Plan Coverage & Formularies API based on the Da Vinci PDEX US Drug Formulary IG.
+- id: carin-bb
+  conforms: true
+  evidence: >-
+    Patient Access API exposes ExplanationOfBenefit (claims), consistent with the
+    CARIN Blue Button consumer-directed payer data pattern.
+- id: oauth2
+  conforms: true
+  evidence: Member authorization via OAuth 2.0 (login.devoted.com authorize/token endpoints).
+- id: openid-connect
+  conforms: true
+  evidence: OIDC discovery document published at login.devoted.com/.well-known/openid-configuration.
+- id: smart-on-fhir
+  conforms: partial
+  evidence: >-
+    Member authorization uses OAuth2/OIDC per CMS rule; the CapabilityStatement
+    does not declare full SMART launch/capabilities extensions.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: FHIR errors use OperationOutcome (application/fhir+json), not RFC 9457 problem+json.
+- id: hipaa
+  conforms: true
+  evidence: >-
+    Devoted Health is a Medicare Advantage payer and HIPAA covered entity; PHI is
+    exchanged under HIPAA. (Regulatory status, not a published third-party audit
+    certification — see security/ for any trust-center evidence.)

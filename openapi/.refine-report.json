@@ -1,0 +1,22 @@
+{
+  "provider": "devoted",
+  "sources": [
+    "devoted-condition-api-openapi.yml",
+    "devoted-encounter-api-openapi.yml",
+    "devoted-explanationofbenefit-api-openapi.yml",
+    "devoted-medication-api-openapi.yml",
+    "devoted-patient-api-openapi.yml"
+  ],
+  "outputs": [
+    "devoted-condition-api-openapi.yml",
+    "devoted-encounter-api-openapi.yml",
+    "devoted-explanationofbenefit-api-openapi.yml",
+    "devoted-medication-api-openapi.yml",
+    "devoted-patient-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

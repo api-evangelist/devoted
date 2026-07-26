@@ -1,0 +1,103 @@
+generated: '2026-07-18'
+method: derived
+source: >-
+  openapi/devoted-patient-access-openapi.json +
+  conformance/devoted-directory-capabilitystatement.json (FHIR R4 resource graph)
+notes: >-
+  Entity graph derived from the FHIR resources Devoted Health exposes across its
+  three APIs. Relationships follow HL7 FHIR R4 reference semantics
+  (Reference(Type) fields). Provider/Pharmacy Directory and Formulary resources
+  come from the fhir.devoted.com CapabilityStatement; member clinical resources
+  from the Patient Access Swagger.
+apis:
+  patient_access:
+    base_url: https://api.prod.devoted.com/fhir
+    entities: [Patient, Condition, Encounter, ExplanationOfBenefit, Medication]
+  directory:
+    base_url: https://fhir.devoted.com/fhir
+    entities: [Organization, OrganizationAffiliation, Practitioner, PractitionerRole, Location, HealthcareService, InsurancePlan]
+  formulary:
+    base_url: https://fhir.devoted.com/fhir
+    entities: [List, MedicationKnowledge, CodeSystem, ValueSet]
+entities:
+- name: Patient
+  api: patient_access
+  fhir_resource: Patient
+- name: Condition
+  api: patient_access
+  fhir_resource: Condition
+- name: Encounter
+  api: patient_access
+  fhir_resource: Encounter
+- name: ExplanationOfBenefit
+  api: patient_access
+  fhir_resource: ExplanationOfBenefit
+- name: Medication
+  api: patient_access
+  fhir_resource: Medication
+- name: Practitioner
+  api: directory
+  fhir_resource: Practitioner
+- name: PractitionerRole
+  api: directory
+  fhir_resource: PractitionerRole
+- name: Organization
+  api: directory
+  fhir_resource: Organization
+- name: Location
+  api: directory
+  fhir_resource: Location
+- name: HealthcareService
+  api: directory
+  fhir_resource: HealthcareService
+- name: InsurancePlan
+  api: directory
+  fhir_resource: InsurancePlan
+- name: MedicationKnowledge
+  api: formulary
+  fhir_resource: MedicationKnowledge
+relationships:
+- from: Condition
+  to: Patient
+  kind: belongs_to
+  via: patient (Reference(Patient))
+- from: Encounter
+  to: Patient
+  kind: belongs_to
+  via: patient (Reference(Patient))
+- from: ExplanationOfBenefit
+  to: Patient
+  kind: belongs_to
+  via: patient (Reference(Patient))
+- from: PractitionerRole
+  to: Practitioner
+  kind: belongs_to
+  via: practitioner (Reference(Practitioner))
+- from: PractitionerRole
+  to: Organization
+  kind: belongs_to
+  via: organization (Reference(Organization))
+- from: PractitionerRole
+  to: Location
+  kind: has_many
+  via: location (Reference(Location))
+- from: PractitionerRole
+  to: HealthcareService
+  kind: has_many
+  via: healthcareService (Reference(HealthcareService))
+- from: OrganizationAffiliation
+  to: Organization
+  kind: belongs_to
+  via: organization / participatingOrganization (Reference(Organization))
+- from: HealthcareService
+  to: Location
+  kind: has_many
+  via: location (Reference(Location))
+- from: HealthcareService
+  to: Organization
+  kind: belongs_to
+  via: providedBy (Reference(Organization))
+- from: InsurancePlan
+  to: Organization
+  kind: belongs_to
+  via: ownedBy / administeredBy (Reference(Organization))

@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source: live probes of Devoted Health hosts
+hosts:
+- host: https://login.devoted.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: devoted-openid-configuration.json
+  - path: /.well-known/jwks.json
+    status: 200
+    note: referenced by openid-configuration jwks_uri (not saved verbatim)
+- host: https://fhir.devoted.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+- host: https://www.devoted.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://api.prod.devoted.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404

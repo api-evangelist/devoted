@@ -1,0 +1,24 @@
+generated: '2026-07-18'
+method: searched
+source: https://www.devoted.com/developers/
+notes: >-
+  Devoted Health's public FHIR APIs are versioned by FHIR release. No dedicated
+  API status page (status.devoted.com does not resolve) and no formal published
+  deprecation/sunset policy were found. Server software is HAPI FHIR 6.6.0.
+versioning:
+  scheme: fhir-release
+  current: R4 (4.0.1)
+  server: HAPI FHIR 6.6.0
+  docs: https://www.devoted.com/developers/
+  resource_versioning: supported (vread, _history, ETag/If-Match)
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation or RFC 8594 Sunset policy found.
+status_page: null
+sla:
+  url: null
+support:
+  email: interop@devoted.com
+docs_last_updated: '2021-06-29'
+deprecated_operations: []

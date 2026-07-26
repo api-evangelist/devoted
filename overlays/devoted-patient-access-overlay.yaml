@@ -1,0 +1,40 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Devoted Health Patient Access API
+  version: 1.0.0
+extends: openapi/devoted-patient-access-openapi.json
+actions:
+- target: $.info
+  update:
+    title: Devoted Health Patient Access API
+    x-apievangelist-notes: >-
+      CMS Patient Access (21st Century Cures Act) FHIR R4 API exposing member
+      claims, encounters, conditions, and medications. Member authorization via
+      OAuth 2.0 / OpenID Connect (login.devoted.com).
+    x-api-category: healthcare-payer
+    x-fhir-version: 4.0.1
+- target: $.info
+  update:
+    x-authentication: authentication/devoted-authentication.yml
+    x-conventions: conventions/devoted-conventions.yml
+    x-error-catalog: errors/devoted-problem-types.yml
+    x-conformance: conformance/devoted-conformance.yml
+- target: $.paths['/Patient/{id}'].get
+  update:
+    summary: Read a single Patient resource by id.
+    operationId: getPatient
+- target: $.paths['/Patient'].get
+  update:
+    operationId: searchPatients
+- target: $.paths['/Condition'].get
+  update:
+    operationId: searchConditions
+- target: $.paths['/Encounter'].get
+  update:
+    operationId: searchEncounters
+- target: $.paths['/ExplanationOfBenefit'].get
+  update:
+    operationId: searchExplanationOfBenefit
+- target: $.paths['/Medication'].get
+  update:
+    operationId: searchMedications
